@@ -37,13 +37,13 @@ public class VistaApp extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public VistaApp() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 425, 475);
+	
 		
+			//BARRA DEL MENU
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);	
 		contentPane = new JPanel();
@@ -51,6 +51,7 @@ public class VistaApp extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+			//BOTONES
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.setBounds(265, 115, 90, 25);
 		contentPane.add(btnNewButton);
@@ -58,7 +59,8 @@ public class VistaApp extends JFrame {
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.setBounds(265, 150, 90, 25);
 		contentPane.add(btnNewButton_1);
-		
+	
+			//TEXTO
 		nomUsuario = new JTextField();
 		nomUsuario.setBounds(15, 250, 175, 20);
 		contentPane.add(nomUsuario);
@@ -69,6 +71,8 @@ public class VistaApp extends JFrame {
 		contentPane.add(passUsuario);
 		passUsuario.setColumns(10);
 		
+		
+			//IMAGEN
 		lblNewLabel = new JLabel("IMAGEN");
 		lblNewLabel.setBounds(15, 15, 175, 175);
 		contentPane.add(lblNewLabel);
