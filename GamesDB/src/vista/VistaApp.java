@@ -1,25 +1,27 @@
 package vista;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 public class VistaApp extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField nomUsuario;
 	private JTextField passUsuario;
-	private JLabel lblNewLabel;
+	private JLabel lblImage;
 	private JLabel lblUser;
-	private JLabel lblContrasea;
+	private JLabel lblPass;
 
 	/**
 	 * Launch the application.
@@ -73,9 +75,12 @@ public class VistaApp extends JFrame {
 		
 		
 			//IMAGEN
-		lblNewLabel = new JLabel("IMAGEN");
-		lblNewLabel.setBounds(15, 15, 175, 175);
-		contentPane.add(lblNewLabel);
+
+		Image niggerCobra = new ImageIcon(this.getClass().getResource("/NiggerCobra.jpg")).getImage();
+		JLabel lblImage = new JLabel();
+		lblImage.setBounds(15, 15, 175, 175);
+		lblImage.setIcon(new ImageIcon(niggerCobra));
+		getContentPane().add(lblImage);
 		
 		lblUser = new JLabel("Usuario :");
 		lblUser.setHorizontalAlignment(SwingConstants.CENTER);
@@ -83,11 +88,11 @@ public class VistaApp extends JFrame {
 		lblUser.setBounds(15, 210, 85, 40);
 		contentPane.add(lblUser);
 		
-		lblContrasea = new JLabel("Contrase\u00F1a :");
-		lblContrasea.setHorizontalAlignment(SwingConstants.CENTER);
-		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblContrasea.setBounds(15, 265, 110, 40);
-		contentPane.add(lblContrasea);
+		lblPass = new JLabel("Contrase\u00F1a :");
+		lblPass.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPass.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblPass.setBounds(15, 265, 110, 40);
+		contentPane.add(lblPass);
 		
 	}
 }
