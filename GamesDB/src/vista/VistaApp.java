@@ -62,7 +62,7 @@ public class VistaApp extends JFrame {
 		btnNewButton_1.setBounds(265, 150, 90, 25);
 		contentPane.add(btnNewButton_1);
 	
-			//TEXTO
+			//INPUT TEXTO
 		nomUsuario = new JTextField();
 		nomUsuario.setBounds(15, 250, 175, 20);
 		contentPane.add(nomUsuario);
@@ -74,14 +74,21 @@ public class VistaApp extends JFrame {
 		passUsuario.setColumns(10);
 		
 		
-			//IMAGEN
-
+			//IMAGENES
 		Image niggerCobra = new ImageIcon(this.getClass().getResource("/NiggerCobra.jpg")).getImage();
 		JLabel lblImage = new JLabel();
 		lblImage.setBounds(15, 15, 175, 175);
 		lblImage.setIcon(new ImageIcon(niggerCobra));
 		getContentPane().add(lblImage);
 		
+		Image triForce = new ImageIcon(this.getClass().getResource("/Triforce.png")).getImage();
+		JLabel lblFondo = new JLabel();
+		lblFondo.setBounds(75, 0, 425, 475);
+		lblFondo.setIcon(new ImageIcon(triForce));
+		this.add(lblFondo);
+			//--------------------------------------------//
+		
+			//TEXTO
 		lblUser = new JLabel("Usuario :");
 		lblUser.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUser.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -93,6 +100,8 @@ public class VistaApp extends JFrame {
 		lblPass.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblPass.setBounds(15, 265, 110, 40);
 		contentPane.add(lblPass);
+		
+	
 		
 	}
 }
