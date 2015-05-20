@@ -19,6 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.SystemColor;
+import javax.swing.JComboBox;
+import javax.swing.JList;
 
 public class VistaApp extends JFrame {
 
@@ -27,6 +29,10 @@ public class VistaApp extends JFrame {
     private CardLayout cL;
     private JTextField textField;
     private JPasswordField passwordField;
+    private JTextField textNomFiltros;
+    private JTextField txtNombre;
+    private JTextField txtGenero;
+    private JTextField txtPlataforma;
     
     
     public VistaApp() {
@@ -99,7 +105,11 @@ public class VistaApp extends JFrame {
 	  vistaPrincipal.add(btnJuegos);
 	  
 	  JButton btnLogin = new JButton("LogIn");
-	  btnLogin.setForeground(SystemColor.textHighlight);
+	  btnLogin.addActionListener(new ActionListener() {
+	  	public void actionPerformed(ActionEvent e) {
+	  	}
+	  });
+	  btnLogin.setForeground(new Color(100, 150, 240));
 	  btnLogin.setFont(new Font("Tahoma", Font.BOLD, 16));
 	  btnLogin.setContentAreaFilled(false);
 	  btnLogin.setBorderPainted(false);
@@ -125,9 +135,9 @@ public class VistaApp extends JFrame {
 
 
 	  
-	  JPanel vista2 = new JPanel();
-	  contenedor.add(vista2, "Vista2");
-	  vista2.setLayout(null);
+	  JPanel vistaJuegos = new JPanel();
+	  contenedor.add(vistaJuegos, "Vista2");
+	  vistaJuegos.setLayout(null);
 	  
 	  JButton button_1 = new JButton("<<");
 	  button_1.addActionListener(new ActionListener() {
@@ -136,7 +146,80 @@ public class VistaApp extends JFrame {
 	  	    c.show(contenedor, "Vista1");
 	  	}
 	  });
-	  button_1.setBounds(296, 118, 89, 23);
-	  vista2.add(button_1);
+	  button_1.setBounds(335, 379, 89, 23);
+	  vistaJuegos.add(button_1);
+	  
+	  JLabel lblFiltros = new JLabel("Filtros");
+	  lblFiltros.setFont(new Font("Tahoma", Font.BOLD, 16));
+	  lblFiltros.setBounds(175, 10, 80, 15);
+	  vistaJuegos.add(lblFiltros);
+	  
+	  JLabel lblNomFiltros = new JLabel("Nombre");
+	  lblNomFiltros.setBounds(20, 50, 55, 15);
+	  vistaJuegos.add(lblNomFiltros);
+	  
+	  JLabel lblGenFiltos = new JLabel("Genero");
+	  lblGenFiltos.setBounds(155, 50, 55, 15);
+	  vistaJuegos.add(lblGenFiltos);
+	  
+	  JLabel lblPlatFiltros = new JLabel("Plataforma");
+	  lblPlatFiltros.setBounds(295, 50, 80, 15);
+	  vistaJuegos.add(lblPlatFiltros);
+	  
+	  JComboBox cmbGenFiltros = new JComboBox();
+	  cmbGenFiltros.setBounds(155, 75, 120, 20);
+	  vistaJuegos.add(cmbGenFiltros);
+	  
+	  textNomFiltros = new JTextField();
+	  textNomFiltros.setBounds(20, 75, 120, 20);
+	  vistaJuegos.add(textNomFiltros);
+	  textNomFiltros.setColumns(10);
+	  
+	  JComboBox cmbPlatFiltros = new JComboBox();
+	  cmbPlatFiltros.setBounds(295, 75, 120, 20);
+	  vistaJuegos.add(cmbPlatFiltros);
+	  
+	  JList list = new JList();
+	  list.setBounds(20, 125, 190, 250);
+	  vistaJuegos.add(list);
+	  
+	  JLabel lblNombre = new JLabel("Nombre");
+	  lblNombre.setBounds(245, 125, 70, 20);
+	  vistaJuegos.add(lblNombre);
+	  
+	  txtNombre = new JTextField();
+	  txtNombre.setBounds(245, 145, 175, 20);
+	  vistaJuegos.add(txtNombre);
+	  txtNombre.setColumns(10);
+	  
+	  JLabel lblGenero = new JLabel("Genero");
+	  lblGenero.setBounds(245, 180, 75, 15);
+	  vistaJuegos.add(lblGenero);
+	  
+	  txtGenero = new JTextField();
+	  txtGenero.setBounds(245, 200, 175, 20);
+	  vistaJuegos.add(txtGenero);
+	  txtGenero.setColumns(10);
+	  
+	  JLabel lblPlataforma = new JLabel("Plataforma");
+	  lblPlataforma.setBounds(245, 235, 90, 15);
+	  vistaJuegos.add(lblPlataforma);
+	  
+	  txtPlataforma = new JTextField();
+	  txtPlataforma.setBounds(245, 260, 175, 20);
+	  vistaJuegos.add(txtPlataforma);
+	  txtPlataforma.setColumns(10);
+	  
+	  JButton btnEditar = new JButton("Editar");
+	  btnEditar.setForeground(new Color(100, 150, 240));
+	  btnEditar.setFont(new Font("Tahoma", Font.BOLD, 16));
+	  btnEditar.setBounds(245, 310, 130, 25);
+	  vistaJuegos.add(btnEditar);
+	  
+	  JButton btnSalvar = new JButton("Salvar");
+	  btnSalvar.setForeground(new Color(255, 165, 0));
+	  btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 16));
+	  btnSalvar.setBounds(245, 345, 130, 25);
+	  vistaJuegos.add(btnSalvar);
     }	
 }
