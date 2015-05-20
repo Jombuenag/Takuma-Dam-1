@@ -2,17 +2,23 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-
-import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JMenuItem;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class VistaApp extends JFrame {
 
@@ -20,11 +26,13 @@ public class VistaApp extends JFrame {
     private VistaPrincipal vistaPrincipal;
     private CardLayout cL;
     private JTextField textField;
+    private JPasswordField passwordField;
     
     
     public VistaApp() {
 	  
 	  vistaPrincipal = new VistaPrincipal();
+	  vistaPrincipal.setForeground(new Color(255, 140, 0));
 	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  setBounds(100, 100, 460, 485);
 	  
@@ -46,24 +54,81 @@ public class VistaApp extends JFrame {
 	  JPanel contenedor = new JPanel();
 	  contentPane.add(contenedor, BorderLayout.CENTER);
 	  contenedor.setLayout(new CardLayout(0, 0));
-	  contenedor.add(vistaPrincipal, "Vista 1");
+	  contenedor.add(vistaPrincipal, "Vista1");
 	  
-	  JLabel lblImagen = new JLabel("");
-	  lblImagen.setBounds(10, 10, 175, 175);
-	  vistaPrincipal.add(lblImagen);
+	  //INSERTAMOS LA IMAGEN
+	  Image niggerCobra = new ImageIcon(this.getClass().getResource("/NiggerCobra.jpg")).getImage();
+	  JLabel lblImage = new JLabel();
+	  vistaPrincipal.add(lblImage);
+	  lblImage.setBounds(10, 10, 175, 175);
+
+	  lblImage.setIcon(new ImageIcon(niggerCobra));
+	  JLabel lblImagen = new JLabel();
+	  vistaPrincipal.add(lblImage);
 	  
 	  JLabel lblUsuario = new JLabel("Usuario :");
 	  lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 16));
-	  lblUsuario.setBounds(20, 200, 105, 20);
+	  lblUsuario.setBounds(10, 200, 105, 20);
 	  vistaPrincipal.add(lblUsuario);
 	  
 	  textField = new JTextField();
-	  textField.setBounds(20, 230, 155, 20);
+	  textField.setBounds(10, 230, 155, 20);
 	  vistaPrincipal.add(textField);
 	  textField.setColumns(10);
 	  
+	  JButton btnPerfil = new JButton("Perfil");
+	  btnPerfil.setFont(new Font("Tahoma", Font.BOLD, 12));
+	  btnPerfil.addActionListener(new ActionListener() {
+	  	public void actionPerformed(ActionEvent arg0) {
+	  	    CardLayout c = (CardLayout)contenedor.getLayout();
+	  	    c.show(contenedor, "Vista2");
+	  	}
+	  });
+	  btnPerfil.setBounds(275, 80, 125, 25);
+	  vistaPrincipal.add(btnPerfil);
+	  
+	  JLabel lblNewLabel = new JLabel("Password :");
+	  lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+	  lblNewLabel.setBounds(10, 260, 105, 20);
+	  vistaPrincipal.add(lblNewLabel);
+	  
+        	  passwordField = new JPasswordField();
+        	  passwordField.setBounds(10, 290, 155, 20);
+        	  vistaPrincipal.add(passwordField);
+        	  
+	  JButton btnJuegos = new JButton("Juegos");
+	  btnJuegos.setFont(new Font("Tahoma", Font.BOLD, 12));
+	  btnJuegos.setBounds(275, 35, 125, 25);
+	  vistaPrincipal.add(btnJuegos);
+	  
+	  JButton btnLogin = new JButton("LogIn");
+	  btnLogin.setForeground(SystemColor.textHighlight);
+	  btnLogin.setFont(new Font("Tahoma", Font.BOLD, 16));
+	  btnLogin.setContentAreaFilled(false);
+	  btnLogin.setBorderPainted(false);
+	  btnLogin.setBounds(10, 335, 155, 25);
+	  vistaPrincipal.add(btnLogin);
+	  
+	  JButton btnRegistrarse = new JButton("Registrate!");
+	  btnRegistrarse.setForeground(new Color(255, 165, 0));
+	  btnRegistrarse.setFont(new Font("Tahoma", Font.BOLD, 16));
+	  btnRegistrarse.setContentAreaFilled(false);
+	  btnRegistrarse.setBorderPainted(false);
+	  btnRegistrarse.setBounds(10, 365, 155, 25);
+	  vistaPrincipal.add(btnRegistrarse);
+	  
 	  JPanel vista2 = new JPanel();
-	  contenedor.add(vista2, "Vista 2");
+	  contenedor.add(vista2, "Vista2");
 	  vista2.setLayout(null);
+	  
+	  JButton button_1 = new JButton("<<");
+	  button_1.addActionListener(new ActionListener() {
+	  	public void actionPerformed(ActionEvent arg0) {
+	  	    CardLayout c = (CardLayout)contenedor.getLayout();
+	  	    c.show(contenedor, "Vista1");
+	  	}
+	  });
+	  button_1.setBounds(296, 118, 89, 23);
+	  vista2.add(button_1);
     }	
 }
