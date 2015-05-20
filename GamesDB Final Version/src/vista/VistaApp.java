@@ -10,49 +10,33 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
 
 public class VistaApp extends JFrame {
 
     private JPanel contentPane;
     private VistaPrincipal vistaPrincipal;
     private CardLayout cL;
+    private JTextField textField;
     
     
     public VistaApp() {
 	  
 	  vistaPrincipal = new VistaPrincipal();
-	  vistaPrincipal.setBounds(100, 100, 450, 475);
 	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  setBounds(100, 100, 460, 485);
 	  
 	  JMenuBar menuBar = new JMenuBar();
 	  setJMenuBar(menuBar);
 	  
-	  JMenuItem mntmPrincipal = new JMenuItem("Principal");
-	  mntmPrincipal.addActionListener(new ActionListener() {
-	  	public void actionPerformed(ActionEvent arg0) {
-	  	    cL = (CardLayout)(vistaPrincipal.getLayout());
-	  	    cL.show(vistaPrincipal,"Principal");
-	  	}
-	  });
-	  menuBar.add(mntmPrincipal);
+	  JMenuItem mntmInicio = new JMenuItem("Inicio");
+	  menuBar.add(mntmInicio);
 	  JMenuItem mntmUsuario = new JMenuItem("Usuario");
-	  mntmUsuario.addActionListener(new ActionListener() {
-	  	public void actionPerformed(ActionEvent e) {
-	  	    cL = (CardLayout)(vistaPrincipal.getLayout());
-	  	    cL.show(vistaPrincipal,"Usuario");
-	  	}
-	  });
 	  menuBar.add(mntmUsuario);
-	  JMenuItem mntmOpciones = new JMenuItem("Opciones");
-	  mntmOpciones.addActionListener(new ActionListener() {
-	  	public void actionPerformed(ActionEvent e) {
-	  	  cL = (CardLayout)(vistaPrincipal.getLayout());
-	  	    cL.show(vistaPrincipal,"Opciones");
-	  	}
-	  });
-	  
-	  menuBar.add(mntmOpciones);
+	  JMenuItem mntmJuegos = new JMenuItem("Juegos");
+	  menuBar.add(mntmJuegos);
 	  
 	  contentPane = new JPanel();
 	  contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -62,10 +46,24 @@ public class VistaApp extends JFrame {
 	  JPanel contenedor = new JPanel();
 	  contentPane.add(contenedor, BorderLayout.CENTER);
 	  contenedor.setLayout(new CardLayout(0, 0));
-	  contenedor.add(vistaPrincipal, "Principal");
+	  contenedor.add(vistaPrincipal, "Vista 1");
 	  
-	  JPanel panel = new JPanel();
-	  contenedor.add(panel, "name_482512736307");
-	  panel.setLayout(null);
+	  JLabel lblImagen = new JLabel("");
+	  lblImagen.setBounds(10, 10, 175, 175);
+	  vistaPrincipal.add(lblImagen);
+	  
+	  JLabel lblUsuario = new JLabel("Usuario :");
+	  lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 16));
+	  lblUsuario.setBounds(20, 200, 105, 20);
+	  vistaPrincipal.add(lblUsuario);
+	  
+	  textField = new JTextField();
+	  textField.setBounds(20, 230, 155, 20);
+	  vistaPrincipal.add(textField);
+	  textField.setColumns(10);
+	  
+	  JPanel vista2 = new JPanel();
+	  contenedor.add(vista2, "Vista 2");
+	  vista2.setLayout(null);
     }	
 }
