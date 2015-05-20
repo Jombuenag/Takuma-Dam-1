@@ -61,9 +61,7 @@ public class VistaApp extends JFrame {
 	  JLabel lblImage = new JLabel();
 	  vistaPrincipal.add(lblImage);
 	  lblImage.setBounds(10, 10, 175, 175);
-
 	  lblImage.setIcon(new ImageIcon(niggerCobra));
-	  JLabel lblImagen = new JLabel();
 	  vistaPrincipal.add(lblImage);
 	  
 	  JLabel lblUsuario = new JLabel("Usuario :");
@@ -87,14 +85,13 @@ public class VistaApp extends JFrame {
 	  btnPerfil.setBounds(275, 80, 125, 25);
 	  vistaPrincipal.add(btnPerfil);
 	  
-	  JLabel lblNewLabel = new JLabel("Password :");
-	  lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-	  lblNewLabel.setBounds(10, 260, 105, 20);
-	  vistaPrincipal.add(lblNewLabel);
-	  
-        	  passwordField = new JPasswordField();
-        	  passwordField.setBounds(10, 290, 155, 20);
-        	  vistaPrincipal.add(passwordField);
+	  JLabel lblPassword = new JLabel("Password :");
+	  lblPassword.setFont(new Font("Tahoma", Font.BOLD, 16));
+	  lblPassword.setBounds(10, 260, 105, 20);
+	  vistaPrincipal.add(lblPassword);
+    	  passwordField = new JPasswordField();
+    	  passwordField.setBounds(10, 290, 155, 20);
+    	  vistaPrincipal.add(passwordField);
         	  
 	  JButton btnJuegos = new JButton("Juegos");
 	  btnJuegos.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -116,6 +113,17 @@ public class VistaApp extends JFrame {
 	  btnRegistrarse.setBorderPainted(false);
 	  btnRegistrarse.setBounds(10, 365, 155, 25);
 	  vistaPrincipal.add(btnRegistrarse);
+	  
+	  //IMAGEN TRIFORCE
+
+	  Image triforce = new ImageIcon(this.getClass().getResource("/Triforce.png")).getImage();
+  	  JLabel lblTriforce = new JLabel();
+  	  vistaPrincipal.add(lblTriforce);
+  	  lblTriforce.setBounds(100, 100, 265, 265);
+  	  lblTriforce.setIcon(new ImageIcon(triforce));
+  	  vistaPrincipal.add(lblTriforce);
+
+
 	  
 	  JPanel vista2 = new JPanel();
 	  contenedor.add(vista2, "Vista2");
