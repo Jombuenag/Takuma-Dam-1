@@ -1,56 +1,58 @@
 package modelo;
 
-import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class UsuariosModelo {
 
 		private final static String USUARIOS_SEL="SELECT * FROM usuarios";
-		private final static String USUARIO_COL="usuario";
+		private static String USUARIO_COL="usuario";
 		
 		//CONEXION
-		private Connection conexion = null; //ESTO MANEJA LA CONEXION
-		private Statement instruccion = null;
-		private ResultSet conjuntoResultados = null;
+		private Connection conexion;
+		Statement instruccion = null;
+		ResultSet conjuntoResultados = null;
 			
 		//USUARIOSDB
-		private ArrayList<String> usuarios = null;
+		private ArrayList<String> usuarios;
 		
-		public UsuariosModelo(){
+		
+		public UsuariosModelo(ConexionDB conexion){
 			//CON ESTO SE OBTIENE LA BASE DE DATOS
-			conexion=ConexionDB.getConexion();
+			this.conexion = conexion.getConexion();
 			//INCIALIZA EL ARRAY USUARIOS
 			usuarios = new ArrayList<String>();
 		}
 		
-		public ArrayList getUsuarios();
+		public ArrayList<String> getUsuarios() {
+
 			try{
 				instruccion = this.conexion.createStatement();
 				conjuntoResultados = instruccion.executeQuery(USUARIOS_SEL);
 				
 				//SACAMOS UNA LISTA POR PANTALLA DE LOS DATOS
 				while(conjuntoResultados.next()){
-					usuarios.add(conjuntoResultados.getString(USUARIOS_COL));
+					usuarios.add(conjuntoResultados.getString(USUARIO_COL));
 				}
-				return usuarios;
 			}
 			catch (SQLException excepcionSql){
 				excepcionSql.printStackTrace();
-				return usuarios;
 			}
 			finally{
 				try{
-					conjutonResultados.close();
-					instrucion.close();
+					instruccion.close();
+					conjuntoResultados.close();
+					conexion.close();
 			}
-			catch(SQLException excepcionSql)
-			{
-				excepcionSql.printStackTrace();
+			catch(SQLException excepcionSql){
+			excepcionSql.printStackTrace();
 			}
 		}
+		return usuarios;
+
 	}
 }
 

@@ -22,13 +22,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import modelo.ConexionDB;
 import modelo.UsuariosModelo;
 
 public class VistaApp extends JFrame {
 
     private JPanel contentPane;
     private VistaPrincipal vistaPrincipal;
-    private CardLayout cL;
     private JPasswordField passwordField;
     private JTextField textNomFiltros;
     private JTextField txtNombre;
@@ -37,8 +37,10 @@ public class VistaApp extends JFrame {
     //DATOS PARA 
     UsuariosModelo usuarios;
     
-    public VistaApp() {
-    	
+    ConexionDB conexion;
+    
+    public VistaApp(ConexionDB gameDB) {
+    		this.conexion = gameDB;
 	//VISTA PRINCIPAL Y PANELES
 	  
 	vistaPrincipal = new VistaPrincipal();
@@ -129,14 +131,14 @@ public class VistaApp extends JFrame {
 		btnLogin.setBounds(10, 335, 155, 25);
 		vistaPrincipal.add(btnLogin);
 	
-	JComboBox cmbUsuario = new JComboBox();
+		JComboBox cmbUsuario = new JComboBox();
 		cmbUsuario.setBounds(10, 230, 155, 20);
 		vistaPrincipal.add(cmbUsuario);
-		usuarios = new UsuariosModelo();
-		//Iterator<String> it = getUsuarios().iterator();
-		//while(it.hasNext()){
-		//cmbUsuario.addItem((String)it.next());
-	
+		usuarios = new UsuariosModelo(conexion);
+		Iterator<String> it = usuarios.getUsuarios().iterator();
+		while(it.hasNext())
+		cmbUsuario.addItem((String)it.next());
+
 	
 	  
 	JButton btnRegistrarse = new JButton("Registrate!");
@@ -245,3 +247,4 @@ public class VistaApp extends JFrame {
 		vistaUsuario.setLayout(null);
 	}
 }
+

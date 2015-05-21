@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class ConexionDB {
 	//DATOS DE LA CONEXION
 	static final String CONTROLADOR_MYSQL ="com.mysql.jdbc.Driver";
-	
+
 	//DATOS DE LA BASE DE DATOS
 	private String host;
 	private String bbdd;
@@ -49,5 +49,8 @@ public class ConexionDB {
 				
 	}
 
-	
+
+    public Connection getConexion() {
+	  return conexion;
+	  }
 }
