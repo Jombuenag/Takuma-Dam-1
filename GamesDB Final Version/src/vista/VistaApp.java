@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,18 +22,20 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import modelo.UsuariosModelo;
+
 public class VistaApp extends JFrame {
 
     private JPanel contentPane;
     private VistaPrincipal vistaPrincipal;
     private CardLayout cL;
-    private JTextField txtUsuario;
     private JPasswordField passwordField;
     private JTextField textNomFiltros;
     private JTextField txtNombre;
     private JTextField txtGenero;
     private JTextField txtPlataforma;
-    
+    //DATOS PARA 
+    UsuariosModelo usuarios;
     
     public VistaApp() {
     	
@@ -88,11 +91,7 @@ public class VistaApp extends JFrame {
 	JLabel lblUsuario = new JLabel("Usuario :");
 		lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblUsuario.setBounds(10, 200, 105, 20);
-		vistaPrincipal.add(lblUsuario);  
-	txtUsuario = new JTextField();
-		txtUsuario.setBounds(10, 230, 155, 20);
-		vistaPrincipal.add(txtUsuario);
-		txtUsuario.setColumns(10);
+		vistaPrincipal.add(lblUsuario);
 	  
 	JButton btnPerfil = new JButton("Perfil");
 		btnPerfil.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -129,6 +128,16 @@ public class VistaApp extends JFrame {
 		btnLogin.setBorderPainted(false);
 		btnLogin.setBounds(10, 335, 155, 25);
 		vistaPrincipal.add(btnLogin);
+	
+	JComboBox cmbUsuario = new JComboBox();
+		cmbUsuario.setBounds(10, 230, 155, 20);
+		vistaPrincipal.add(cmbUsuario);
+		usuarios = new UsuariosModelo();
+		//Iterator<String> it = getUsuarios().iterator();
+		//while(it.hasNext()){
+		//cmbUsuario.addItem((String)it.next());
+	
+	
 	  
 	JButton btnRegistrarse = new JButton("Registrate!");
 		btnRegistrarse.setForeground(new Color(255, 165, 0));
@@ -230,5 +239,9 @@ public class VistaApp extends JFrame {
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnSalvar.setBounds(260, 345, 130, 25);
 		vistaJuegos.add(btnSalvar);
-	}	
+		
+		JPanel vistaUsuario = new JPanel();
+		contenedor.add(vistaUsuario, "name_38293295549360");
+		vistaUsuario.setLayout(null);
+	}
 }
