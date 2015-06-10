@@ -10,6 +10,7 @@ public class UsuariosModelo {
 
 		private final static String USUARIOS_SEL="SELECT * FROM usuarios";
 		private static String USUARIO_COL="usuario";
+
 		
 		//CONEXION
 		private Connection conexion;
@@ -17,7 +18,7 @@ public class UsuariosModelo {
 		ResultSet conjuntoResultados = null;
 			
 		//USUARIOSDB
-		private ArrayList<String> usuarios;
+		private static ArrayList<String> usuarios;
 		
 		
 		public UsuariosModelo(ConexionDB conexion){
@@ -27,8 +28,8 @@ public class UsuariosModelo {
 			usuarios = new ArrayList<String>();
 		}
 		
-		public ArrayList<String> getUsuarios() {
-
+		public ArrayList<String>getUsuarios(){
+		
 			try{
 				instruccion = this.conexion.createStatement();
 				conjuntoResultados = instruccion.executeQuery(USUARIOS_SEL);
@@ -51,8 +52,11 @@ public class UsuariosModelo {
 			excepcionSql.printStackTrace();
 			}
 		}
-		return usuarios;
+		return  usuarios;
 
 	}
+
+
+
 }
 

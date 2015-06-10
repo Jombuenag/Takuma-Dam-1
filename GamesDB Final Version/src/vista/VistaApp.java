@@ -20,6 +20,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import modelo.ConexionDB;
@@ -34,6 +35,8 @@ public class VistaApp extends JFrame {
     private JTextField txtNombre;
     private JTextField txtGenero;
     private JTextField txtPlataforma;
+    private JComboBox<String> cmbUsuario,cmbGenFiltros,cmbPlatFiltros;
+    private JList<String> listaJuegos;
     //DATOS PARA 
     UsuariosModelo usuarios;
     
@@ -71,6 +74,12 @@ public class VistaApp extends JFrame {
 		});
 		menuBar.add(mnbtnInicio);
 	JMenuItem mnbtnUsuario = new JMenuItem("Usuario");
+	mnbtnUsuario.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+		    CardLayout c = (CardLayout)contenedor.getLayout();
+		    c.show(contenedor, "Vista3");
+		}
+	});
 		menuBar.add(mnbtnUsuario);
 	JMenuItem mnbtnJuegos = new JMenuItem("Juegos");
 		mnbtnJuegos.addActionListener(new ActionListener() {
@@ -95,7 +104,13 @@ public class VistaApp extends JFrame {
 		lblUsuario.setBounds(10, 200, 105, 20);
 		vistaPrincipal.add(lblUsuario);
 	  
-	JButton btnPerfil = new JButton("Perfil");
+	JButton btnPerfil = new JButton("Usuario");
+		btnPerfil.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+		      CardLayout c = (CardLayout)contenedor.getLayout();
+		      c.show(contenedor, "Vista3");
+			}   
+		});
 		btnPerfil.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnPerfil.setBounds(275, 80, 125, 25);
 		vistaPrincipal.add(btnPerfil);
@@ -131,16 +146,14 @@ public class VistaApp extends JFrame {
 		btnLogin.setBounds(10, 335, 155, 25);
 		vistaPrincipal.add(btnLogin);
 	
-		JComboBox cmbUsuario = new JComboBox();
+		cmbUsuario = new JComboBox<String>();
 		cmbUsuario.setBounds(10, 230, 155, 20);
 		vistaPrincipal.add(cmbUsuario);
-		usuarios = new UsuariosModelo(conexion);
-		Iterator<String> it = usuarios.getUsuarios().iterator();
-		while(it.hasNext())
+			usuarios = new UsuariosModelo(conexion);
+			Iterator<String> it = usuarios.getUsuarios().iterator();
+			while(it.hasNext())
 		cmbUsuario.addItem((String)it.next());
 
-	
-	  
 	JButton btnRegistrarse = new JButton("Registrate!");
 		btnRegistrarse.setForeground(new Color(255, 165, 0));
 		btnRegistrarse.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -149,17 +162,14 @@ public class VistaApp extends JFrame {
 		btnRegistrarse.setBounds(10, 365, 155, 25);
 		vistaPrincipal.add(btnRegistrarse);
 	  
-	//IMAGEN TRIFORCE
-	
+	//IMAGEN TRIFORCE INICIO
 	Image triforce = new ImageIcon(this.getClass().getResource("/Triforce.png")).getImage();
 	JLabel lblTriforce = new JLabel();
 		vistaPrincipal.add(lblTriforce);
-		lblTriforce.setBounds(100, 100, 265, 265);
+		lblTriforce.setBounds(85, 100, 265, 265);
 		lblTriforce.setIcon(new ImageIcon(triforce));
 		vistaPrincipal.add(lblTriforce);
 	
-	
-	  
 	JPanel vistaJuegos = new JPanel();
 		contenedor.add(vistaJuegos, "Vista2");
 		vistaJuegos.setLayout(null);
@@ -172,6 +182,7 @@ public class VistaApp extends JFrame {
 	JLabel lblNomFiltros = new JLabel("Nombre");
 		lblNomFiltros.setBounds(20, 50, 55, 15);
 		vistaJuegos.add(lblNomFiltros);
+		
 	textNomFiltros = new JTextField();
 		textNomFiltros.setBounds(20, 75, 120, 20);
 		vistaJuegos.add(textNomFiltros);
@@ -185,23 +196,20 @@ public class VistaApp extends JFrame {
 		lblPlatFiltros.setBounds(295, 50, 80, 15);
 		vistaJuegos.add(lblPlatFiltros);
 	  
-	JComboBox cmbGenFiltros = new JComboBox();
+	cmbGenFiltros = new JComboBox<String>();
 	cmbGenFiltros.setBounds(155, 75, 120, 20);
 	vistaJuegos.add(cmbGenFiltros);
 	
 	  
-	JComboBox cmbPlatFiltros = new JComboBox();
+	cmbPlatFiltros = new JComboBox<String>();
 	cmbPlatFiltros.setBounds(295, 75, 120, 20);
 	vistaJuegos.add(cmbPlatFiltros);
-	  
-	JList list = new JList();
-	list.setBounds(20, 125, 190, 250);
-	vistaJuegos.add(list);
 	  
 	JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(245, 125, 70, 20);
 		vistaJuegos.add(lblNombre);
-	txtNombre = new JTextField();
+		
+		txtNombre = new JTextField();
 		txtNombre.setBounds(245, 145, 175, 20);
 		vistaJuegos.add(txtNombre);
 		txtNombre.setColumns(10);
@@ -209,7 +217,8 @@ public class VistaApp extends JFrame {
 	JLabel lblGenero = new JLabel("Genero");
 		lblGenero.setBounds(245, 180, 75, 15);
 		vistaJuegos.add(lblGenero);
-	txtGenero = new JTextField();
+		
+		txtGenero = new JTextField();
 		txtGenero.setBounds(245, 200, 175, 20);
 		vistaJuegos.add(txtGenero);
 		txtGenero.setColumns(10);
@@ -217,7 +226,8 @@ public class VistaApp extends JFrame {
 	JLabel lblPlataforma = new JLabel("Plataforma");
 		lblPlataforma.setBounds(245, 235, 90, 15);
 		vistaJuegos.add(lblPlataforma);  
-	txtPlataforma = new JTextField();
+		
+		txtPlataforma = new JTextField();
 		txtPlataforma.setBounds(245, 260, 175, 20);
 		vistaJuegos.add(txtPlataforma);
 		txtPlataforma.setColumns(10);
@@ -242,9 +252,47 @@ public class VistaApp extends JFrame {
 		btnSalvar.setBounds(260, 345, 130, 25);
 		vistaJuegos.add(btnSalvar);
 		
+		listaJuegos = new JList<String>();
+		listaJuegos.setBounds(20, 125, 190, 250);
+		vistaJuegos.add(listaJuegos);
+		
+		//IMAGEN TRIFORCE JUEGOS
+		JLabel lblTriforceJuegos = new JLabel();
+		lblTriforceJuegos.setBounds(85, 100, 265, 265);
+		vistaJuegos.add(lblTriforceJuegos);
+		lblTriforceJuegos.setIcon(new ImageIcon(triforce));
+			
 		JPanel vistaUsuario = new JPanel();
-		contenedor.add(vistaUsuario, "name_38293295549360");
+		contenedor.add(vistaUsuario, "Vista3");
 		vistaUsuario.setLayout(null);
+		//IMAGEN TRIFORCE USUARIOS
+		JLabel lblTriforceUsuarios = new JLabel();
+		lblTriforceUsuarios.setBounds(85, 100, 265, 265);
+		vistaUsuario.add(lblTriforceUsuarios);
+		lblTriforceUsuarios.setIcon(new ImageIcon(triforce));
+		
+		JLabel lblPantallaUsuariosEn = new JLabel("Pantalla Usuarios en mantenimiento, disculpen las molestias.");
+		lblPantallaUsuariosEn.setForeground(Color.RED);
+		lblPantallaUsuariosEn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPantallaUsuariosEn.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPantallaUsuariosEn.setBounds(0, 28, 434, 46);
+		vistaUsuario.add(lblPantallaUsuariosEn);
+		
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    CardLayout c = (CardLayout)contenedor.getLayout();
+			    c.show(contenedor, "Vista1");
+			}
+		});
+		btnVolver.setForeground(Color.ORANGE);
+		btnVolver.setBorderPainted(false);
+		btnVolver.setContentAreaFilled(false);
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnVolver.setBounds(155, 355, 110, 30);
+		vistaUsuario.add(btnVolver);
 	}
+    
+    
 }
 

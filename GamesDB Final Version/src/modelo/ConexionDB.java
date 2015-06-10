@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
-
-
 public class ConexionDB {
 	//DATOS DE LA CONEXION
 	static final String CONTROLADOR_MYSQL ="com.mysql.jdbc.Driver";
@@ -25,9 +22,7 @@ public class ConexionDB {
 		this.bbdd=BBDD;
 		this.user=USER;
 		this.pass=PASS;
-		
 	}
-	
 	
 	public boolean connectDB(){
 		try{

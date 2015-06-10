@@ -13,8 +13,7 @@ public class VistaPrincipal extends JPanel {
 	public VistaPrincipal() {
 		setLayout(null);
 		this.setBounds(100, 100, 425, 475);
-		
-
+	
  }
 
 	
