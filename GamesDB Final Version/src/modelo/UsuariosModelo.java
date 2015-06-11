@@ -10,6 +10,7 @@ public class UsuariosModelo {
 
 		private final static String USUARIOS_SEL="SELECT * FROM usuarios";
 		private static String USUARIO_COL="usuario";
+		private static String NOMBRE_COL="nombre";
 
 		
 		//CONEXION
@@ -19,6 +20,7 @@ public class UsuariosModelo {
 			
 		//USUARIOSDB
 		private static ArrayList<String> usuarios;
+		private static ArrayList<String> nombres;
 		
 		
 		public UsuariosModelo(ConexionDB conexion){
@@ -28,6 +30,26 @@ public class UsuariosModelo {
 			usuarios = new ArrayList<String>();
 		}
 		
+		
+		public ArrayList<String>getNombres(){
+			
+			try{
+				instruccion = this.conexion.createStatement();
+				conjuntoResultados = instruccion.executeQuery(USUARIOS_SEL);
+				
+//				HAY QUE SACAR LA LISTA DE NOMBRES DE LA BASE DE DATOS
+				while(conjuntoResultados.next()){
+					nombres.add(conjuntoResultados.getString(NOMBRE_COL));
+				}
+			}
+			catch(SQLException excepcionSql){
+				excepcionSql.printStackTrace();	
+			}
+			return nombres;
+		
+					
+	}
+				
 		public ArrayList<String>getUsuarios(){
 		
 			try{
@@ -42,16 +64,6 @@ public class UsuariosModelo {
 			catch (SQLException excepcionSql){
 				excepcionSql.printStackTrace();
 			}
-			finally{
-				try{
-					instruccion.close();
-					conjuntoResultados.close();
-					conexion.close();
-			}
-			catch(SQLException excepcionSql){
-			excepcionSql.printStackTrace();
-			}
-		}
 		return  usuarios;
 
 	}

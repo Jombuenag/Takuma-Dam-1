@@ -9,7 +9,7 @@ public class GamesDBApp {
 		ConexionDB gameDB;
 		
 		//CREDENCIALES
-		gameDB = new ConexionDB("localhost","GamesDB","root","tonphp");
+		gameDB = new ConexionDB("localhost","GamesDB","root","");
 		
 		if(gameDB.connectDB()==true)System.out.println("ESTAMOS DENTRO!");
 			else System.out.println("ERROR DE ENTRADA");

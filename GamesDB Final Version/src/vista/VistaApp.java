@@ -7,7 +7,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Iterator;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,8 +22,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import modelo.ConexionDB;
+import modelo.JuegosModelo;
 import modelo.UsuariosModelo;
 
 public class VistaApp extends JFrame {
@@ -39,13 +42,17 @@ public class VistaApp extends JFrame {
     private JList<String> listaJuegos;
     //DATOS PARA 
     UsuariosModelo usuarios;
+    JuegosModelo juegos;
+    private String catalogo[]; 
     
     ConexionDB conexion;
     
     public VistaApp(ConexionDB gameDB) {
     		this.conexion = gameDB;
 	//VISTA PRINCIPAL Y PANELES
-	  
+	juegos = new JuegosModelo(conexion);
+
+    		
 	vistaPrincipal = new VistaPrincipal();
 		vistaPrincipal.setForeground(new Color(255, 140, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,6 +80,14 @@ public class VistaApp extends JFrame {
 			}
 		});
 		menuBar.add(mnbtnInicio);
+	JMenuItem mnbtnJuegos = new JMenuItem("Juegos");
+	mnbtnJuegos.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			CardLayout c = (CardLayout)contenedor.getLayout();
+			c.show(contenedor, "Vista2");
+	  		}
+		});
+		menuBar.add(mnbtnJuegos);
 	JMenuItem mnbtnUsuario = new JMenuItem("Usuario");
 	mnbtnUsuario.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
@@ -81,15 +96,7 @@ public class VistaApp extends JFrame {
 		}
 	});
 		menuBar.add(mnbtnUsuario);
-	JMenuItem mnbtnJuegos = new JMenuItem("Juegos");
-		mnbtnJuegos.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			CardLayout c = (CardLayout)contenedor.getLayout();
-			c.show(contenedor, "Vista2");
-	  		}
-		});
-		menuBar.add(mnbtnJuegos);
-	  
+	
 	 
 	  //INSERTAMOS LA IMAGEN DE PERFIL
 	Image niggerCobra = new ImageIcon(this.getClass().getResource("/NiggerCobra.jpg")).getImage();
@@ -150,9 +157,7 @@ public class VistaApp extends JFrame {
 		cmbUsuario.setBounds(10, 230, 155, 20);
 		vistaPrincipal.add(cmbUsuario);
 			usuarios = new UsuariosModelo(conexion);
-			Iterator<String> it = usuarios.getUsuarios().iterator();
-			while(it.hasNext())
-		cmbUsuario.addItem((String)it.next());
+	
 
 	JButton btnRegistrarse = new JButton("Registrate!");
 		btnRegistrarse.setForeground(new Color(255, 165, 0));
@@ -199,7 +204,6 @@ public class VistaApp extends JFrame {
 	cmbGenFiltros = new JComboBox<String>();
 	cmbGenFiltros.setBounds(155, 75, 120, 20);
 	vistaJuegos.add(cmbGenFiltros);
-	
 	  
 	cmbPlatFiltros = new JComboBox<String>();
 	cmbPlatFiltros.setBounds(295, 75, 120, 20);
@@ -222,6 +226,7 @@ public class VistaApp extends JFrame {
 		txtGenero.setBounds(245, 200, 175, 20);
 		vistaJuegos.add(txtGenero);
 		txtGenero.setColumns(10);
+		
 	  
 	JLabel lblPlataforma = new JLabel("Plataforma");
 		lblPlataforma.setBounds(245, 235, 90, 15);
@@ -252,7 +257,20 @@ public class VistaApp extends JFrame {
 		btnSalvar.setBounds(260, 345, 130, 25);
 		vistaJuegos.add(btnSalvar);
 		
-		listaJuegos = new JList<String>();
+		
+		catalogo = juegos.getJuegos().toArray(new String[juegos.getJuegos().size()]);
+		listaJuegos = new JList(catalogo);
+		listaJuegos.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				if (listaJuegos.getSelectedValue() != null){
+					ArrayList<String[]> arrayJuegos = juegos.getAllJuegos(listaJuegos.getSelectedValue());
+					txtNombre.setText(arrayJuegos.get(0)[0]);
+					txtGenero.setText(arrayJuegos.get(0)[1]);
+					txtPlataforma.setText(arrayJuegos.get(0)[2]);
+				}
+			}
+		});
+		
 		listaJuegos.setBounds(20, 125, 190, 250);
 		vistaJuegos.add(listaJuegos);
 		
@@ -275,7 +293,7 @@ public class VistaApp extends JFrame {
 		lblPantallaUsuariosEn.setForeground(Color.RED);
 		lblPantallaUsuariosEn.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblPantallaUsuariosEn.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPantallaUsuariosEn.setBounds(0, 28, 434, 46);
+		lblPantallaUsuariosEn.setBounds(0, 0, 434, 46);
 		vistaUsuario.add(lblPantallaUsuariosEn);
 		
 		JButton btnVolver = new JButton("Volver");
