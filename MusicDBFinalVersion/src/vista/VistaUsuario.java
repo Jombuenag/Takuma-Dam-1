@@ -2,9 +2,11 @@ package vista;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,36 +22,44 @@ public class VistaUsuario extends JPanel {
 	private JPasswordField passwordField;
 	
 	public VistaUsuario(MainVista mainVista) {
-		setBackground(new Color(205, 92, 92));
+		setBackground(new Color(0, 205, 210));
 		this.mainVista = mainVista;
-		setBounds(100, 100, 600, 550);
+		setBounds(100, 100, 650, 600);
 		setLayout(null);
 		
-		
+		Image imgGuitar = new ImageIcon(this.getClass().getResource("/images/guitar.jpeg")).getImage();
 		JLabel lblImgUsuario = new JLabel("lblImgUsuario");
-		add(lblImgUsuario);
 		lblImgUsuario.setBounds(200, 80, 175, 175);
-		
+		lblImgUsuario.setIcon(new ImageIcon(imgGuitar));
+		add(lblImgUsuario);
+			
 		JButton btnLogIn = new JButton("LogIn");
-		add(btnLogIn);
+		btnLogIn.setForeground(new Color(155, 55, 205));
+		btnLogIn.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnLogIn.setContentAreaFilled(false);
 		btnLogIn.setBounds(140, 425, 120, 30);
+		add(btnLogIn);
+		
+		JButton btnReg = new JButton("Registrarse");
+		btnReg.setForeground(new Color(205, 50, 255));
+		btnReg.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnReg.setBounds(280, 425, 135, 30);
+		btnReg.setContentAreaFilled(false);
+		btnReg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		add(btnReg);
 		
 		JButton btnVistaMusic = new JButton("VistaMusic");
+		btnVistaMusic.setBounds(500, 495, 90, 25);
 		btnVistaMusic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainVista.VistaMusic();
 			}
 		});
 		add(btnVistaMusic);
-		btnVistaMusic.setBounds(500, 495, 90, 25);
-		
-		JButton btnNewButton = new JButton("Registrarse");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setBounds(300, 425, 120, 30);
-		add(btnNewButton);
+	
 		
 		txtNomUsuario = new JTextField();
 		txtNomUsuario.setBounds(175, 300, 220, 25);
@@ -70,9 +80,6 @@ public class VistaUsuario extends JPanel {
 		passwordField.setBounds(175, 355, 220, 25);
 		add(passwordField);
 		
-		
-		
-
-		
+				
 	}
 }

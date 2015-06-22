@@ -6,6 +6,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import java.awt.Component;
+import javax.swing.Box;
+import java.awt.Dimension;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JList;
 
 public class VistaMusic extends JPanel {
 	
@@ -13,8 +19,8 @@ public class VistaMusic extends JPanel {
 	
 	public VistaMusic(MainVista mainVista) {
 		this.mainVista = mainVista;
-		setBounds(100, 100, 600, 550);
-		setBackground(new Color(205, 92, 92));
+		setBounds(100, 100, 650, 600);
+		setBackground(new Color(0, 205, 210));
 		setLayout(null);
 		
 		JButton btnVistausuarios = new JButton("VistaUsuarios");
@@ -23,7 +29,16 @@ public class VistaMusic extends JPanel {
 				mainVista.VistaUsuario();
 			}
 		});
-		btnVistausuarios.setBounds(126, 75, 148, 34);
+		btnVistausuarios.setBounds(428, 471, 148, 34);
 		add(btnVistausuarios);
+		
+		JLabel lblIcono = new JLabel("Icono");
+		lblIcono.setBounds(15, 455, 85, 85);
+		add(lblIcono);
+		
+		JList list = new JList();
+		list.setBackground(new Color(255, 250, 240));
+		list.setBounds(335, 25, 250, 415);
+		add(list);
 	}
 }

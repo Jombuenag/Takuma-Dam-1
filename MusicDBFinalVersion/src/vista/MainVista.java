@@ -17,9 +17,9 @@ public class MainVista extends JFrame {
 		setTitle("MusicDB");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 550);
+		setBounds(100, 100, 650, 600);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(205, 92, 92));
+		contentPane.setBackground(new Color(0, 205, 210));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new CardLayout(0, 0));
 		setContentPane(contentPane);

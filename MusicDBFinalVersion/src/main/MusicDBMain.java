@@ -9,6 +9,7 @@ public class MusicDBMain {
 
 		MainVista mainVista = new MainVista();
 		mainVista.setVisible(true);
+		
 
 	}
 
